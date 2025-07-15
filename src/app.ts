@@ -38,11 +38,11 @@ app.get("/weather", async (req: Request, res: Response, next: NextFunction) => {
 
     // validates whethe key follows the form of Continent/City_Name
     let cacheData
-    let regex = /[A-Z].*\/[A-Z].*_[A-Z]/
+    let regex = /[A-Z].*\/[A-Z].*(?:_[A-Z])?/
 
     if (city) {
       if (!regex.test(city as string)) {
-        res.status(400).json({ error: "Invalid key format. Expected format: Continent/City_Name" });
+        res.status(400).json({ error: "Invalid key format. Expected format: Continent/City_Name or Contient/City" });
         return
       }
 
